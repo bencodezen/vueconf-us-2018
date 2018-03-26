@@ -152,10 +152,58 @@ components: {
 
 *   The benefit of this is that you don't have to explicitly define everything and can allow the elments to be as powerful as they were meant to be.
 
+### Routing
+
+*   Keeps all route related files in a router directory
+*   Keeps the "pages" in a subdirectory called "views"
+*   Also has a "layout" subdirectory for things that you want to share between pages
+*   Wrap each "View" with a "Layout"
+*   Interesting use of `require('@views/home').default` that is different from the normal `import` syntax
+
+#### View Components
+
+*   Can use in-component route guards: beforeRouteEnter, beforeRouteUpdate, beforeRouteLeave (often better to use route-level guards instead)
+    *   Route guards are like lifecycles and can allow you to really fine-tune things, which makes them different components
+*   You apparently can use `import('@views/home')` directly on the component of a route
+*   Can access $route or accept props from params. Other components also technically have access to $route, but they shouldn't be using it. This seems like a great idea since it abstracts away the concerns that a Vue component has (or does not have for that matter)
+
+#### Simplifying Views
+
+*   By adding a unique key, Vue knows to build the entire page from scratch if the URL changes
+*   If you wrap it in `<keep-alive>`, be careful about the number of routes because it can become a memory leak. So you use an `include` property in order to track specific views.
+*   There is no more beforeRouteUpdate
+*   But this results in slightly slower page render times
+
+#### Meta Info for Views
+
+*   Install the vue-meta plugin which allows you to define a page property on a Vue component / instance
+*   This helps to define meta data like page meta info like page titles
+
+#### Layout Tips
+
+*   Even in layouts, avoid global CSS. Keep element selectors in App.vue or nested under a scoped class
+*   Nested view components _might not_ have a layout (e.g., for a tabbed interface in a dashboard)
+
+#### Route Definitions
+
+*   You can route gurads to have a route render different components based on the actual state of the application
+*   This is great because you can abstract away the logic from being integrated into your app
+
+#### Animate Page Load
+
+*   Before the route resolves, use NProgress to show the animation and give the user an indication that something is happening when they click on a route
+
+#### Lazy-Loaded Routes
+
+*   Apparently you can specify multiple components for a route (i.e., component, loading, error, etc.)
+*   You can even define things like delay and timeout
+
 ## Memorable Quotes
 
-> "Integration of concerns" rather than a "separation of technologies" - Chris
-> "The most powerful tool against bugs remain linting, tests, and code reviews- none of which TypeScript solves" - Chris
+> "Integration of concerns" rather than a "separation of technologies" - Chris Fritz
+> "The most powerful tool against bugs remain linting, tests, and code reviews- none of which TypeScript solves" - Chris Fritz
+> "Unless you have like 10,000+ icons on the page, you're not going to notice the difference between functional and-nonfunctional components" - Chris Fritz
+> "Users will wait up to 7x longer if there is a branded animation going on (especially if it's interactive)" - Sarah Drasnger
 
 ## Questions
 
@@ -167,6 +215,8 @@ components: {
     *   It's a gut feeling when you see it. If you feel good about it and the team feels good, you're good. If you feel pain, maybe it's time to refactor.
 4.  How do you deal with targeting styles in a scoped parent?
     *   Use `>>>` or `\deep\` to do it
+5.  How do you track users scroll point when navigating around an app?
+    *   Check out scrollBehavior that allows you to save the position that a user has scrolled to
 
 ## Presentation Notes
 
