@@ -198,12 +198,40 @@ components: {
 *   Apparently you can specify multiple components for a route (i.e., component, loading, error, etc.)
 *   You can even define things like delay and timeout
 
+### State Management with Vuex
+
+*   Vuex provides us with a structure for how to manage shared state
+    *   The state (i.e., data properties): `store.state`
+    *   The getters are like computed properties: `store.getters[]`
+    *   Actions are like methods: `store.dispatch`
+    *   Mutations are synchronous functions that update the state: `store.commit('COMMIT_NAME')
+        *   Actions and mutations look like they do the same thing, so why do we have it?
+        *   Because there will be times where you want differentiate how they are used based on certain conditions
+*   There is usually one Vuex store in the entire application, but it makes sense to split it up into modules
+    *   If you have multiple mutations with the same name, it will actually trigger all of the mutations at once
+    *   The solution to having multiple mutations getting kicked off is to set the `namespaced` property to true
+    *   The state is not namespaced, but the getters, mutations and actions then get namespaced with the module name prefixed (i.e., a `todos` module will have an action such as `todos/add`)
+    *   Sidenote: Prefers to have multiple export statements as opposed to the `export default { ... }` patterns because it allows you to better organize your code and gives you more flexibility
+    *   You can set `namespaced` to be default true. Check out the example in `src/state/modules/index.js`
+    *   Another trick is to run through all the modules and kickoff the `init` action if it exists since it's a common pattern for actions that need to do things like setting headers
+
+**(!) You can create a `get()` and `set()` with computed properties to help manage Vuex when binding things like input to v-model**
+
+#### Grouped Helpers
+
+*   These are good for grouping together Vuex functions within the components
+*   This allows you to then map out repeated actions to various components with a simple include
+*   Refactoring becomes a lot easier
+
+**(!) Look into writing generators to help you ease the development workflow. Check out Hygen in Resources**
+
 ## Memorable Quotes
 
 > "Integration of concerns" rather than a "separation of technologies" - Chris Fritz
 > "The most powerful tool against bugs remain linting, tests, and code reviews- none of which TypeScript solves" - Chris Fritz
 > "Unless you have like 10,000+ icons on the page, you're not going to notice the difference between functional and-nonfunctional components" - Chris Fritz
 > "Users will wait up to 7x longer if there is a branded animation going on (especially if it's interactive)" - Sarah Drasnger
+> "You can even use emojis to name things. In fact, you should always use emojis. It's best practice. 🤣" - Chris Fritz
 
 ## Questions
 
@@ -234,3 +262,4 @@ components: {
 *   [7 Secret Patterns](https://github.com/chrisvfritz/7-secret-patterns)
 *   [Polyfill.io (a Babel alternative)](https://polyfill.io/v2/docs/)
 *   [Vue.js Style Guide](https://vuejs.org/v2/style-guide/)
+*   [Hygen](https://github.com/jondot/hygen)
