@@ -1,7 +1,7 @@
 # VueConf.US Workshop - Proven Patterns for Building Vue Apps
 
-*   By Chris Fritz and Eduardo
-*   On October 9th, 2017 @ 9:00AM
+*   **Speakers:** Chris Fritz ([@chrisvfritz](https://twitter.com/chrisvfritz)) and Eduardo ([@posva](https://twitter.com/posva))
+*   **When:** March 26th, 2018 from 9:00AM to 5:00PM
 
 ## Notes from the Talk
 
