@@ -2,7 +2,7 @@
 
 ## About
 
-*   **Speakers:** Chris Fritz ([@chrisvfritz](https://twitter.com/chrisvfritz)) and Eduardo ([@posva](https://twitter.com/posva))
+*   **Speakers:** Chris Fritz ([@chrisvfritz](https://twitter.com/chrisvfritz)) and Eduardo San Martin Morote ([@posva](https://twitter.com/posva))
 *   **When:** March 26th, 2018 from 9:00AM to 5:00PM
 
 In this workshop, we'll cover everything you need to know to get started building world-class Vue applications. Topics will include configuring Webpack for single-file components, setting up the most advanced workflows currently possible, how to organize (and reorganize) increasingly complex applications, and more.
