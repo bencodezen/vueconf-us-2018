@@ -9,7 +9,7 @@ Here you can find my notes during my time at [VueConf.US](https://vueconf.us/) 2
 
 ## Day 1 - Workshop
 
-[Notes](/workshop-proven-patterns) - Will break these out later on for improved readability
+[Notes](/workshop-proven-patterns/notes.md) - Will break these out later on for improved readability
 
 ## Day 2 - Conference
 
