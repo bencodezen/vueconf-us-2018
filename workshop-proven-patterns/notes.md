@@ -3,9 +3,11 @@
 *   By Chris Fritz and Eduardo
 *   On October 9th, 2017 @ 9:00AM
 
-## Background
+## Notes from the Talk
 
-## What We Will Cover
+### Background
+
+### What We Will Cover
 
 *   Languages: How JS, HTML and CSS fit in a Vue app
 *   Components: Specific tips for building and organizing components
@@ -17,25 +19,25 @@ And maybe...
 *   Testing: Making tests as painless and useful as possible with end-to-end tests (with Cypress) and unit tests (with Jest)
 *   Enabling best practices: How to avoid arguments and increase productivity by making it easy to do the right thing
 
-## Participation Tips
+### Participation Tips
 
 *   Raise your hands for questions at any time!
 *   All examples are public (no need to copy down code examples)
 *   Please no recording (to be respectful of the privacy of participants)
 
-## Format
+### Format
 
 1.  Learn - explanations, examples, stories
 2.  Question - clarifications, what-ifs
 3.  Apply - code, experiment, one-on-one help
 
-## Single-File Components
+### Single-File Components
 
 *   Explains the basic breakdown of a .vue component
 *   When they are compiled, there is still a separation of concerns when it is built
 *   Isn't this backwards? No. It is "integration of concerns" rather than a "separation of technologies"
 
-## JavaScript
+### JavaScript
 
 *   Babel or TypeScript? You can use either. Vue is incrementally adoptable and does not require a bunch of tools in order for you to build in it. Answer: Use what makes you happy and productive on your team
     *   Chooses Babel instead of TypeScript. The explanation is essentially that TypeScript is great, but the advantages don't seem to be there yet. Most bugs are not due to type violations
@@ -43,7 +45,7 @@ And maybe...
 *   Babel polyfills vs Polyfill.io - Polyfill.io allows you to only fetch what you need
 *   Drop IE support if you can! - You can save up to ~15KB gzipped
 
-## HTML
+### HTML
 
 *   Templates and render functions
 *   Templates can be as simple as defining a template property on a component with a string. It can also be more advanced where you use render functions
@@ -53,13 +55,15 @@ And maybe...
 
 **(!) Check out anchored-heading rendered component examples that allows you to dynamically generate the heading**
 
-### Functional Components
+#### Functional Components
 
 *   Stateless and instance-less: No data, computed, etc. and no lifecycle
 *   Improves performance: especially for components rendered many times, e.g., with a `v-for`)
 *   Can return multiple root nodes. Check out the NavBar for an example of it
 *   Don't just use functional components everywhere because it's highly context dependent and you need things like state and lifecycle hooks more than you realize!
 *   Sample syntax below
+*   You can still pass props and events since it doesn't require the state. It reuses the parent context of its own. It's similar to an $emit
+*   Surprisingly, the template can be faster sometimes because it is so highly optimized. An example is how templates cache a static class while the dynamic class can change without updating the original static class
 
 ```
 <template functional>
@@ -78,10 +82,87 @@ export default {
 }
 ```
 
+**(!) You can define your own inline component within the components definition and actually use the render function to do so. This allows you to create components without creating components**
+
+```js
+components: {
+    TestInlineRender: {
+        functional: true,
+        render(h, context) {
+            return h('button', 'click me')
+        }
+    }
+}
+```
+
+**(!) If you want to return something that's not HTML, you can do this with render functions. Examples are Canvas or WebGL. See "7 Secret Patterns" in resources**
+
+### CSS
+
+*   Global CSS (usually) only in a root `App.vue` component, especially for components rendered many times, e.g., with a `v-for`
+*   Scope all component CSS (using either the scoped or module attributes)
+    *   Check out Scoped CSS example in the docs
+    *   Check out CSS Modules
+    *   Recommends CSS Modules instead because it provides "true protection from collisions." It is the same scoping strategy to be used anywhere in the app regardless of where it's used
+        *   It takes a little bit of upfront work, but then you're good to go; whereas scoped is the reverse where there's more to learn later
+*   The `lang` attribute defines the preprocessor you are going to use
+*   Recommends SCSS because you can just use vanilla CSS and it is still good to go
+
+### Components
+
+*   Order of elements - recommends `script` > `template` > `style` because of the relationship between how you "toggle" between the various blocks
+*   Always use SFCs. Simpler refactoring even if you are only using a render function to generate your component
+
+#### Useful Patterns in the Style Guide
+
+*   Check out resources for link
+*   Use two words for each component to ensure no conflicts occur
+*   If you can't use a component more than once, prefix if with `The`
+*   Tightly coupling components with naming helps to provide context
+
+#### Wrap Vendor Components With Your Own
+
+*   More easily switch to an alternative
+*   Control the interface
+*   Allows you to enforce an internal style guide through the components
+*   This prevents developers from using the component the wrong way
+
+#### Organization
+
+*   Flat makes refactors easier: no need to update imports after moving a component
+*   Flat makes finding files easier: folder scoping leads to lazily named files, because they don't have to be unique
+
+#### Transparent Components
+
+*   Use component element wrappers just like normal elements:
+
+    *   Attributes: You can bind all attributes passed to the component to the direct element.
+
+        ```
+        inheritAttrs: false
+
+        <input v-bind="$attrs" />
+        ```
+
+    *   Events: You can use custom events to emit the value. You define a `listeners` property within `computed` that can allow you to pass up values up into it if desired. Use spread operator to track other listeners
+
+*   The benefit of this is that you don't have to explicitly define everything and can allow the elments to be as powerful as they were meant to be.
+
 ## Memorable Quotes
 
 > "Integration of concerns" rather than a "separation of technologies" - Chris
 > "The most powerful tool against bugs remain linting, tests, and code reviews- none of which TypeScript solves" - Chris
+
+## Questions
+
+1.  What about naming convention and how Vue handles it?
+    *   Recommend PascalCase in order to differentiate between HTML and from a Vue codebase
+2.  Is it worth to try and make everything functional?
+    *   Only use it when you have to, but you won't see huge optimization improvements unless you have a crazy number of items
+3.  How do you know when to break up a component?
+    *   It's a gut feeling when you see it. If you feel good about it and the team feels good, you're good. If you feel pain, maybe it's time to refactor.
+4.  How do you deal with targeting styles in a scoped parent?
+    *   Use `>>>` or `\deep\` to do it
 
 ## Presentation Notes
 
@@ -89,8 +170,13 @@ export default {
 *   \+ Displaying the results of the audience so everyone gets an idea of who's in it
 *   \+ The use of a graph to depict what would otherwise be bullet points
 *   \+ Participation tips (i.e., code of conduct) for the audience
+*   \+ Actually takes the time to allow for questions in the middle of the talk
+*   \+ Leverages the current docs which contain great diagrams and examples and also will help familiarize audience members with it so they can refer to it in the future
+*   \+ Allow multiple options for exercises to practice
 
 ## Resources
 
 *   [Slides](https://www.slides.com/chrisvfritz/vueconf-workshop-2018-03)
+*   [7 Secret Patterns](https://github.com/chrisvfritz/7-secret-patterns)
 *   [Polyfill.io (a Babel alternative)](https://polyfill.io/v2/docs/)
+*   [Vue.js Style Guide](https://vuejs.org/v2/style-guide/)
