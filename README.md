@@ -7,6 +7,15 @@ Here you can find my notes during my time at [VueConf.US](https://vueconf.us/) 2
 *   **Date:** March 26th (Workshop) - March 27th - 28th (Conference)
 *   **Location:** New Orleans, Lousiana
 
+## To Do
+
+[ ] Convert the ToDo list to issues for the repo
+[ ] Wire up all the headings to the appropriate routes
+[ ] Add missing links for resources in talks
+[ ] Add missing links for speaker profiles
+[ ] Try to locate all slides for all talks
+[ ] Polish notes
+
 ## Day 1 - Workshop: Proven Patterns for Building Vue Apps
 
 In this workshop, we'll cover everything you need to know to get started building world-class Vue applications. Topics will include configuring Webpack for single-file components, setting up the most advanced workflows currently possible, how to organize (and reorganize) increasingly complex applications, and more.
