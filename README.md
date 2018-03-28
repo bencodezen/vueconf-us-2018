@@ -9,13 +9,15 @@ Here you can find my notes during my time at [VueConf.US](https://vueconf.us/) 2
 
 ## To Do
 
-[ ] Convert the ToDo list to issues for the repo
-[ ] Reorganize notes from workshop
-[ ] Wire up all the headings to the appropriate routes
-[ ] Add missing links for resources in talks
-[ ] Add missing links for speaker profiles
-[ ] Try to locate all slides for all talks
-[ ] Polish notes
+*   [ ] Convert the ToDo list to issues for the repo
+*   [ ] Reorganize notes from workshop
+*   [ ] Wire up all the headings to the appropriate routes
+*   [ ] Add missing links for resources in talks
+*   [ ] Add missing links for speaker profiles
+*   [ ] Try to locate all slides for all talks
+*   [ ] Polish notes
+*   [ ] Update format of speakers in notes
+*   [ ] Optimize how talk descriptions are organized
 
 ## Day 1 - Workshop: Proven Patterns for Building Vue Apps
 
