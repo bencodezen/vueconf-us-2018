@@ -10,6 +10,7 @@ Here you can find my notes during my time at [VueConf.US](https://vueconf.us/) 2
 ## To Do
 
 [ ] Convert the ToDo list to issues for the repo
+[ ] Reorganize notes from workshop
 [ ] Wire up all the headings to the appropriate routes
 [ ] Add missing links for resources in talks
 [ ] Add missing links for speaker profiles
@@ -20,9 +21,7 @@ Here you can find my notes during my time at [VueConf.US](https://vueconf.us/) 2
 
 In this workshop, we'll cover everything you need to know to get started building world-class Vue applications. Topics will include configuring Webpack for single-file components, setting up the most advanced workflows currently possible, how to organize (and reorganize) increasingly complex applications, and more.
 
-[Notes](/workshop-proven-patterns/notes.md)\*
-
-\* _Will break these out later on for improved readability_
+[Notes](/workshop-proven-patterns/notes.md)
 
 ## Day 2 - Conference
 
